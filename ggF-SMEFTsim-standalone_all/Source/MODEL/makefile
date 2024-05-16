@@ -8,7 +8,7 @@
 ifeq ($(wildcard ../make_opts), ../make_opts)
   include ../make_opts
 else
-  FFLAGS+= -ffixed-line-length-132
+  FFLAGS+= -ffixed-line-length-132 -ggdb
   FC=gfortran
 endif
 

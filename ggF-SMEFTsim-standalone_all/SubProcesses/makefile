@@ -26,8 +26,11 @@ allmatrix$(MENUM)py.so: $(patsubst %/matrix.f,%$(MENUM)py.so,$(wildcard */matrix
 	done
 
 cpp:  $(LIBDIR)/$(LIBRARY)  all_matrix.o
-	g++ -g -Wpadded -Wpacked -malign-double -mpreferred-stack-boundary=8 -fPIC -lgfortran all_matrix.f */matrix.f -L ../lib/ -ldhelas -lmodel -lmatrix -shared -ffixed-line-length-0 -o libggF_SMEFTsim.so
-	
+	g++ -ggdb -Wpadded -Wpacked -malign-double -mpreferred-stack-boundary=8 -fPIC -lgfortran all_matrix.f */matrix.f -L ../lib/ -ldhelas -lmodel -lmatrix -shared -ffixed-line-length-0 -o libggF_SMEFTsim.so
+
+test: $(LIBDIR)/$(LIBRARY)  all_matrix.o
+	g++ test_pdg_order.cpp -g -Wpadded -Wpacked -malign-double -mpreferred-stack-boundary=8 -lgfortran all_matrix.f */matrix.f -L ../lib/ -ldhelas -lmodel -lmatrix -ffixed-line-length-0
+
 $(LIBDIR)/$(LIBRARY): $(patsubst %.f,%.o,$(wildcard */matrix.f))  all_matrix.o
 	$(call CREATELIB, $@, $^)  
 
