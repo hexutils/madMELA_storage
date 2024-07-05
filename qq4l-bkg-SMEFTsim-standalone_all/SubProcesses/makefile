@@ -24,8 +24,10 @@ allmatrix$(MENUM)py.so: $(patsubst %/matrix.f,%$(MENUM)py.so,$(wildcard */matrix
 	for lib in $(patsubst %.so,%,$^); do \
 		printf "try:\n    from $$lib import *\nexcept:\n    from .$$lib import *\n" >> allmatrix$(MENUM)py.py; \
 	done
-	
-	
+
+cpp:  $(patsubst %.f,%.o,$(wildcard */matrix.f)) all_matrix.o
+	g++ -O2 -ggdb -Wpadded -Wpacked -malign-double -mpreferred-stack-boundary=8 -fPIC -lgfortran all_matrix.f */matrix.f -L ../lib/ -ldhelas -lmodel -ffixed-line-length-0 -c;
+
 $(LIBDIR)/$(LIBRARY): $(patsubst %.f,%.o,$(wildcard */matrix.f))  all_matrix.o
 	$(call CREATELIB, $@, $^)  
 

@@ -25,11 +25,13 @@ allmatrix$(MENUM)py.so: $(patsubst %/matrix.f,%$(MENUM)py.so,$(wildcard */matrix
 		printf "try:\n    from $$lib import *\nexcept:\n    from .$$lib import *\n" >> allmatrix$(MENUM)py.py; \
 	done
 
-cpp:  $(LIBDIR)/$(LIBRARY)  all_matrix.o
-	g++ -ggdb -Wpadded -Wpacked -malign-double -mpreferred-stack-boundary=8 -fPIC -lgfortran all_matrix.f */matrix.f -L ../lib/ -ldhelas -lmodel -lmatrix -shared -ffixed-line-length-0 -o libggF_SMEFTsim.so
-
-test: $(LIBDIR)/$(LIBRARY)  all_matrix.o
-	g++ test_pdg_order.cpp -g -Wpadded -Wpacked -malign-double -mpreferred-stack-boundary=8 -lgfortran all_matrix.f */matrix.f -L ../lib/ -ldhelas -lmodel -lmatrix -ffixed-line-length-0
+cpp: $(patsubst %.f,%.o,$(wildcard */matrix.f)) all_matrix.o
+	g++ -O2 -ggdb -Wpadded -Wpacked -malign-double -mpreferred-stack-boundary=8 -fPIC -lgfortran all_matrix.f */matrix.f -L ../lib/ -ldhelas -lmodel -ffixed-line-length-0 -c;
+test: $(LIBDIR)/$(LIBRARY) 
+	g++ -O2 -ggdb -Wpadded -Wpacked -malign-double -mpreferred-stack-boundary=8 -fPIC -shared -lgfortran all_matrix.f */matrix.f -L ../lib/ -ldhelas -lmodel -lmatrix -ffixed-line-length-0 -o libSMEFTsim.so;
+	
+link_test: ../Source/DHELAS/*.o ../Source/MODEL/*.o all_matrix.o */matrix.o
+	g++ test_pdg_order_renamed.cpp -ggdb -Wpadded -Wpacked -malign-double -mpreferred-stack-boundary=8 -lgfortran -L ./ -lgiga_renamed -ffixed-line-length-0;
 
 $(LIBDIR)/$(LIBRARY): $(patsubst %.f,%.o,$(wildcard */matrix.f))  all_matrix.o
 	$(call CREATELIB, $@, $^)  
