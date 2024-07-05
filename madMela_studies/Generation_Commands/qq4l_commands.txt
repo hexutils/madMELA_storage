@@ -1,0 +1,23 @@
+For all processes:
+
+import model SMEFTsim_U35_alphaSchemeUFO-restrict_qqH_SM_limit
+
+All workspace commands:
+
+For BSI:
+generate u u~ > l+ l- l+ l-
+generate d d~ > l+ l- l+ l-
+generate s s~ > l+ l- l+ l-
+generate c c~ > l+ l- l+ l-
+
+For SIG:
+generate u u~ > l+ l- l+ l- --diagram_filter <Use the Signal Restrict_Cards_Filters/qq4l_filter>
+generate d d~ > l+ l- l+ l- --diagram_filter <Use the Signal Restrict_Cards_Filters/qq4l_filter>
+generate s s~ > l+ l- l+ l- --diagram_filter <Use the Signal Restrict_Cards_Filters/qq4l_filter>
+generate c c~ > l+ l- l+ l- --diagram_filter <Use the Signal Restrict_Cards_Filters/qq4l_filter>
+
+For Bkg:
+generate u u~ > l+ l- l+ l- --diagram_filter <Use the Bkg Only Restrict_Cards_Filters/qq4l_filter>
+generate d d~ > l+ l- l+ l- --diagram_filter <Use the Bkg Only Restrict_Cards_Filters/qq4l_filter>
+generate s s~ > l+ l- l+ l- --diagram_filter <Use the Bkg Only Restrict_Cards_Filters/qq4l_filter>
+generate c c~ > l+ l- l+ l- --diagram_filter <Use the Bkg Only Restrict_Cards_Filters/qq4l_filter>

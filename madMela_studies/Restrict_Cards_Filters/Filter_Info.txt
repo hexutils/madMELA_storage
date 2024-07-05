@@ -1,0 +1,10 @@
+Note: To use any filter it must be renamed to user_filter.py and placed in the PLUGIN folder in Madgraph
+
+To use the filter add the flag --diagram_filter to the generate command in Madgraph
+
+------ List of Current Filters --------
+
+qq4l_filter.py :
+
+Used for qq -> 4l off-shell studies. The filter will take out signal qq->H->4l processes or bkg qq->4l processes 
+depending on what is commented out in the filter
