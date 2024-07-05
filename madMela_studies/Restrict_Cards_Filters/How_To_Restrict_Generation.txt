@@ -1,0 +1,23 @@
+In order to speed up generation with MadGraph, you can restrict the couplings at the time of generation.
+The speed up happens because SMEFTSim will not generate diagrams with the restricted couplings. Even if
+the user specifies that the coupling is 0 in the param_card at the time of generation, Madgraph will still try to 
+calculate the amplitude from each diagram, even if that value is 0, which becomes extremely inneficient for a 
+model like SMEFT.
+
+In order to restrict the masses you want, in the folder 
+
+models/SMEFTsim_U35_alphaSchemeUFO/
+
+one must put a version of the default param card with specific edits made
+
+If the user wants to remove a specific coupling, the value needs to be set to exactly 0.
+If the use wants to include a specific parameter, the value in the card needs to be set to some non-zero number
+If the values the parameters are set to are the same value i.e cHWB = 1 and cHW = 1, the values of these couplings will be
+forced to be equivalent by the generator. So for each independent coupling the value in the param card must be unique.
+
+An example card to restrict SMEFTSim in the SM limit is included in this directory named: restrict_qqH_SM_limit.dat
+
+To use the restrict card when the user imports the model:
+
+for some card named : <name>.dat
+import model SMEFTsim_U35_alphaSchemeUFO-<name>
