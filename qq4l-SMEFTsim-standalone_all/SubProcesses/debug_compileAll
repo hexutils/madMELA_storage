@@ -1,4 +1,0 @@
-/cvmfs/cms.cern.ch/el9_amd64_gcc12/external/gcc/12.3.1-40d504be6370b5a30e3947a6e575ca28/bin/../lib/gcc/x86_64-redhat-linux-gnu/12.3.1/../../../../x86_64-redhat-linux-gnu/bin/ld: cannot find */SubProcesses/*SIG_renamed.a: No such file or directory
-/cvmfs/cms.cern.ch/el9_amd64_gcc12/external/gcc/12.3.1-40d504be6370b5a30e3947a6e575ca28/bin/../lib/gcc/x86_64-redhat-linux-gnu/12.3.1/../../../../x86_64-redhat-linux-gnu/bin/ld: cannot find */SubProcesses/*BKG_renamed.a: No such file or directory
-/cvmfs/cms.cern.ch/el9_amd64_gcc12/external/gcc/12.3.1-40d504be6370b5a30e3947a6e575ca28/bin/../lib/gcc/x86_64-redhat-linux-gnu/12.3.1/../../../../x86_64-redhat-linux-gnu/bin/ld: cannot find */SubProcesses/*BSI_renamed.a: No such file or directory
-collect2: error: ld returned 1 exit status

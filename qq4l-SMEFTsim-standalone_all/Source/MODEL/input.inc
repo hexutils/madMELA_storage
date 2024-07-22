@@ -1,1 +1,0 @@
-/eos/home-m/msrivast/CMSSW_14_0_0/src/madMELA_storage/libSMEFTSIM/input.inc
