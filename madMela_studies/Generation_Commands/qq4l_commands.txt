@@ -1,6 +1,6 @@
 For all processes:
 
-import model SMEFTsim_U35_alphaSchemeUFO-restrict_qqH_SM_limit
+import model SMEFTsim_U35_alphaScheme_UFO-qqH_SM_limit
 
 All workspace commands:
 

@@ -4,7 +4,7 @@ import shutil
 import sys
 import glob
 import re
-
+from constants import *
 
 coupling_block_header = """ccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
 c      written by the UFO converter
@@ -49,18 +49,6 @@ ccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
 
 if __name__ == "__main__":
     PWD = os.path.abspath(os.curdir)
-    COMMON_BLOCK_FIRST_LINE_LIMIT_TERMS = 6
-    COMMON_BLOCK_LIMIT_TERMS = 8
-    
-    COMMON_BLOCK_FIRST_LINE_LIMIT_TERMS_input = 3
-    COMMON_BLOCK_LIMIT_TERMS_input = 4
-    
-    areas_to_merge = {
-        "ggFSIG": "ggF-SMEFTsim-standalone_all",
-        "qq4lBKG": "qq4l-bkg-SMEFTsim-standalone_all",
-        "qq4lSIG": "qq4l-sig-SMEFTsim-standalone_all",
-        "qq4lBSI": "qq4l-SMEFTsim-standalone_all",
-    }
     #This dictates how the processes will be numbered!
     # 0, 1, 2, 3, etc.
 
