@@ -244,6 +244,9 @@ if __name__ == "__main__":
         print("Compiling", name)
 
         os.chdir(area)
+        # subprocess.run("rm *.o */*.o", shell=True)
+        # subprocess.run(["make", "cpp"], check=True)
+        subprocess.run("rm *.a", shell=True)
         files_to_compile = []
         for compilation_glob in (
             "../Source/DHELAS/*.o", 
@@ -251,9 +254,6 @@ if __name__ == "__main__":
             "all_matrix.o", 
             "*/matrix.o"):
             files_to_compile += glob.glob(compilation_glob)
-        # subprocess.run("rm *.o */*.o", shell=True)
-        # subprocess.run("make cpp", shell=True, check=True)
-        subprocess.run("rm *.a", shell=True)
         subprocess.run(["ar", "cru", f"lib{name}.a"] + files_to_compile, check=True)
         subprocess.run(["ranlib", f"lib{name}.a"], check=True)
         named_values = subprocess.check_output(["nm", f"lib{name}.a"]).decode(sys.stdout.encoding).strip()
