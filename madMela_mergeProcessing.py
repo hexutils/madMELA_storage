@@ -244,8 +244,8 @@ if __name__ == "__main__":
         print("Compiling", name)
 
         os.chdir(area)
-        # subprocess.run("rm *.o */*.o", shell=True)
-        # subprocess.run(["make", "cpp"], check=True)
+        subprocess.run("rm *.o */*.o", shell=True)
+        subprocess.run(["make", "cpp"], check=True)
         subprocess.run("rm *.a", shell=True)
         files_to_compile = []
         for compilation_glob in (
