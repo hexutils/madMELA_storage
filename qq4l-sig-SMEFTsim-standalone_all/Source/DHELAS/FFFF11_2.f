@@ -25,8 +25,8 @@ C
       TMP11 = (F4(5)*F3(5)+F4(6)*F3(6))
       DENOM = COUP/(P2(0)**2-P2(1)**2-P2(2)**2-P2(3)**2 - M2 * (M2 -CI
      $ * W2))
-      F2(3)= DENOM*CI * TMP11*F1(3)*M2
-      F2(4)= DENOM*CI * TMP11*F1(4)*M2
+      F2(3)= DENOM*CI * F1(3)*TMP11*M2
+      F2(4)= DENOM*CI * F1(4)*TMP11*M2
       F2(5)= DENOM*(-CI )* TMP11*(F1(3)*(-1D0)*(P2(0)+P2(3))+F1(4)*(
      $ -P2(1)+CI*(P2(2))))
       F2(6)= DENOM*CI * TMP11*(F1(3)*(P2(1)+CI*(P2(2)))+F1(4)*(P2(0)

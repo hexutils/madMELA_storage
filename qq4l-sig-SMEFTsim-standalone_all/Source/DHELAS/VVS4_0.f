@@ -8,12 +8,12 @@ C
       PARAMETER (CI=(0D0,1D0))
       COMPLEX*16 COUP
       COMPLEX*16 S3(*)
-      COMPLEX*16 TMP27
+      COMPLEX*16 TMP17
       COMPLEX*16 V1(*)
       COMPLEX*16 V2(*)
       COMPLEX*16 VERTEX
-      TMP27 = (V2(3)*V1(3)-V2(4)*V1(4)-V2(5)*V1(5)-V2(6)*V1(6))
-      VERTEX = COUP*(-CI * TMP27*S3(3))
+      TMP17 = (V2(3)*V1(3)-V2(4)*V1(4)-V2(5)*V1(5)-V2(6)*V1(6))
+      VERTEX = COUP*(-CI * TMP17*S3(3))
       END
 
 

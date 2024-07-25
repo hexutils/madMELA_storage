@@ -22,15 +22,15 @@ C
       P4(1) = -DBLE(F4(2))
       P4(2) = -DIMAG(F4(2))
       P4(3) = -DIMAG(F4(1))
-      TMP14 = (F1(3)*F2(3)+F1(4)*F2(4))
+      TMP14 = (F2(3)*F1(3)+F2(4)*F1(4))
       DENOM = COUP/(P4(0)**2-P4(1)**2-P4(2)**2-P4(3)**2 - M4 * (M4 -CI
      $ * W4))
       F4(3)= DENOM*CI * TMP14*(F3(5)*(P4(0)-P4(3))+F3(6)*(-P4(1)+CI
      $ *(P4(2))))
       F4(4)= DENOM*(-CI )* TMP14*(F3(5)*(P4(1)+CI*(P4(2)))-F3(6)*(P4(0)
      $ +P4(3)))
-      F4(5)= DENOM*CI * F3(5)*TMP14*M4
-      F4(6)= DENOM*CI * F3(6)*TMP14*M4
+      F4(5)= DENOM*CI * TMP14*F3(5)*M4
+      F4(6)= DENOM*CI * TMP14*F3(6)*M4
       END
 
 
