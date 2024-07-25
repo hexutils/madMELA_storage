@@ -13,9 +13,9 @@ C
       COMPLEX*16 S1(*)
       COMPLEX*16 S2(*)
       COMPLEX*16 S3(*)
-      COMPLEX*16 TMP26
-      COMPLEX*16 TMP31
-      COMPLEX*16 TMP32
+      COMPLEX*16 TMP18
+      COMPLEX*16 TMP29
+      COMPLEX*16 TMP30
       COMPLEX*16 VERTEX
       P1(0) = DBLE(S1(1))
       P1(1) = DBLE(S1(2))
@@ -29,10 +29,10 @@ C
       P3(1) = DBLE(S3(2))
       P3(2) = DIMAG(S3(2))
       P3(3) = DIMAG(S3(1))
-      TMP26 = (P1(0)*P2(0)-P1(1)*P2(1)-P1(2)*P2(2)-P1(3)*P2(3))
-      TMP31 = (P3(0)*P1(0)-P3(1)*P1(1)-P3(2)*P1(2)-P3(3)*P1(3))
-      TMP32 = (P3(0)*P2(0)-P3(1)*P2(1)-P3(2)*P2(2)-P3(3)*P2(3))
-      VERTEX = COUP*(-S1(3)*S2(3)*S3(3)*(+CI*(TMP26+TMP31+TMP32)))
+      TMP18 = (P1(0)*P2(0)-P1(1)*P2(1)-P1(2)*P2(2)-P1(3)*P2(3))
+      TMP29 = (P1(0)*P3(0)-P1(1)*P3(1)-P1(2)*P3(2)-P1(3)*P3(3))
+      TMP30 = (P2(0)*P3(0)-P2(1)*P3(1)-P2(2)*P3(2)-P2(3)*P3(3))
+      VERTEX = COUP*(-S1(3)*S2(3)*S3(3)*(+CI*(TMP18+TMP29+TMP30)))
       END
 
 

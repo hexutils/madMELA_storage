@@ -21,10 +21,11 @@ ccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
       CALL COUP5()
       CALL COUP6()
       CALL COUP7()
+      CALL COUP8()
 C     
 couplings needed to be evaluated points by points
 C     
-      CALL COUP8()
+      CALL COUP9()
 
       RETURN
       END
@@ -47,7 +48,7 @@ C
 C     
 couplings needed to be evaluated points by points
 C     
-      CALL COUP8()
+      CALL COUP9()
 
       RETURN
       END

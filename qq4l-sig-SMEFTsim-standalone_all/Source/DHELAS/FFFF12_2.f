@@ -29,8 +29,8 @@ C
      $ *(P2(2))))
       F2(4)= DENOM*(-CI )* TMP11*(F1(5)*(P2(1)+CI*(P2(2)))-F1(6)*(P2(0)
      $ +P2(3)))
-      F2(5)= DENOM*CI * TMP11*F1(5)*M2
-      F2(6)= DENOM*CI * TMP11*F1(6)*M2
+      F2(5)= DENOM*CI * F1(5)*TMP11*M2
+      F2(6)= DENOM*CI * F1(6)*TMP11*M2
       END
 
 

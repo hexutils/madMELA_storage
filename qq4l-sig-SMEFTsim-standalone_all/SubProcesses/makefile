@@ -25,9 +25,7 @@ allmatrix$(MENUM)py.so: $(patsubst %/matrix.f,%$(MENUM)py.so,$(wildcard */matrix
 		printf "try:\n    from $$lib import *\nexcept:\n    from .$$lib import *\n" >> allmatrix$(MENUM)py.py; \
 	done
 	
-
-cpp: $(LIBDIR)/$(LIBRARY)
-
+	
 $(LIBDIR)/$(LIBRARY): $(patsubst %.f,%.o,$(wildcard */matrix.f))  all_matrix.o
 	$(call CREATELIB, $@, $^)  
 
