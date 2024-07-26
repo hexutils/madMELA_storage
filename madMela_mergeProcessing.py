@@ -77,7 +77,24 @@ if __name__ == "__main__":
         name, area in areas_to_merge.items()
     }
 
+    makefile_options_to_replace = {
+        name : str(os.path.abspath(area)) + "/Source/make_opts" for
+        name, area in areas_to_merge.items()
+    }
+
     ##################### COMBINING COMMON BLOCKS #################3
+
+    for name in coupling_files_to_replace.keys():
+        coupling_file = coupling_files_to_replace[name]
+        coupling_file_name = coupling_file.split("/")[-1]
+        if not os.path.islink(coupling_file):
+            subprocess.run(["cp", coupling_file, f"archive/{name}_{coupling_file_name}"], check=True)
+        
+        input_file = input_files_to_replace[name]
+        input_file_name = input_file.split("/")[-1]
+        if not os.path.islink(input_file):
+            subprocess.run(["cp", input_file, f"archive/{name}_{input_file_name}"], check=True)
+
 
     common_block_regex = re.compile(
         r"COMMON\/(?P<COMMON_NAME>\S+)\/(?P<terms>(?:.+\s+)(?:\$\s+.+\s*)*)"
@@ -112,7 +129,7 @@ if __name__ == "__main__":
         couplings['COUPLINGS'], key=lambda x: int(x[x.find("_") + 1:]) #sort off number
         )
 
-    print("Creating giga coupl.inc")
+    print("Creating combined coupl.inc...")
     with open(f"{output_area}/coupl.inc", "w+") as f:
         f.write(coupling_block_header)
         f.write(" "*6 + "DOUBLE COMPLEX ")
@@ -180,7 +197,7 @@ if __name__ == "__main__":
         inputs[name] = sorted(input_new)
 
 
-    print("Creating giga input.inc")
+    print("Creating combined input.inc...")
     with open(f"{output_area}/input.inc", "w+") as f:
         f.write(input_block_header)
         for name, input_type in input_types.items():
@@ -223,11 +240,16 @@ if __name__ == "__main__":
                 i += 1
 
     # make new symbolic links and add the files as references
+    print("Creating symbolic links to new files...")
     for name in coupling_files_to_replace.keys():
+        makefile_options = makefile_options_to_replace[name]
+        subprocess.run(["rm", makefile_options])
+        os.symlink(f"{output_area}/make_opts", makefile_options)
+
         coupling_file = coupling_files_to_replace[name]
         subprocess.run(f"rm {coupling_file}", shell=True, check=True)
         os.symlink(f"{output_area}/coupl.inc", coupling_file)
-        
+
         input_file = input_files_to_replace[name]
         subprocess.run(f"rm {input_file}", shell=True, check=True)
         os.symlink(f"{output_area}/input.inc", input_file)
@@ -245,6 +267,19 @@ if __name__ == "__main__":
 
         os.chdir(area)
         subprocess.run("rm *.o */*.o", shell=True)
+        
+        make_cpp_flag = True
+        full_text = ""
+        with open("makefile") as makefile:
+            for line in makefile:
+                if "cpp: $(LIBDIR)/$(LIBRARY)" in line:
+                    make_cpp_flag = False #Do not need to make a cpp flag
+                full_text += line
+
+        if make_cpp_flag:
+            with open("makefile", "a") as makefile:
+                makefile.write("\ncpp: $(LIBDIR)/$(LIBRARY)")
+        
         subprocess.run(["make", "cpp"], check=True)
         subprocess.run("rm *.a", shell=True)
         files_to_compile = []

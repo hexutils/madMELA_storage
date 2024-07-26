@@ -2,23 +2,19 @@
 
 This repository holds the source code that creates the Madgraph reweighting area for JHUGenMELA. __AFTER__ doing all the pre-processing required, simply run `python3 madMela_mergeProcessing.py` and a new version of the library will be dumped into the libSMEFTSIM area. Then, you can use the .so file for testing with MELA. Here are the steps you need to do:
 
+## WARNINGS
+The __ORIGINAL__ `coupl.inc` and `input.inc` files are in the archive folder with some sort of prefix denoting what it is in the form of `<AREA>_{coupl,input}.inc` (i.e. `qq4lBKG_coupl`). DO NOT DELETE THEM!
+
 ## Compilation Instructions
 
-1. Insert the following line into the makefile of each process you will add into SubProcesses (AKA the file `<AREA>/SubProcesses/makefile`) directly underneath the `allmatrix$(MENUM)py.so` target, as such:
-
-```makefile
-cpp: $(LIBDIR)/$(LIBRARY)
-```
-
-2. Move the __ORIGINAL__ `coupl.inc` and `input.inc` files into the archive folder with some sort of prefix denoting what it is in the form of `<AREA>_{coupl,input}.inc` (i.e. `qq4lBKG_coupl`). This is not a necessary step, but you should ___always___ record what was originally there!
-
-3. If it does not exist, make a folder called `lib` under the area. This can be done as follows:
+1. If it does not exist, make a folder called `lib` under the area and make a file to make sure git knows to keep the folder. This can be done as follows:
 
 ```bash
 mkdir -p <AREA>/lib/
+touch <AREA>/lib/.gittouch
 ```
 
-4. In `constants.py`, insert the desired name of your area alongside the folder path in the `area_to_merge` dictionary. It looks as such:
+2. In `constants.py`, insert the desired name of your area alongside the folder path in the `area_to_merge` dictionary. It looks as such:
 
 ```python
 areas_to_merge = {
@@ -31,7 +27,7 @@ areas_to_merge = {
 }
 ```
 
-5. Once madMELA is fully compiled, check and see the following.
+3. Once madMELA is fully compiled, check and see the following.
     - Has the overall `input.inc` in libSMEFTSIM changed? If so, update `madMELA.h` in JHUGenMELA to reflect the new ordering.
     - Did you miss anything? Place the new library within the JHUGenMELA area and try and run some basic MELA test to see if you have any undefined symbols.
 

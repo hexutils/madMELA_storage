@@ -36,3 +36,5 @@ link_test: ../Source/DHELAS/*.o ../Source/MODEL/*.o all_matrix.o */matrix.o
 $(LIBDIR)/$(LIBRARY): $(patsubst %.f,%.o,$(wildcard */matrix.f))  all_matrix.o
 	$(call CREATELIB, $@, $^)  
 
+
+cpp: $(LIBDIR)/$(LIBRARY)
