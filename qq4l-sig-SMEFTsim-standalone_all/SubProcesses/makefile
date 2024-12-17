@@ -29,5 +29,3 @@ allmatrix$(MENUM)py.so: $(patsubst %/matrix.f,%$(MENUM)py.so,$(wildcard */matrix
 $(LIBDIR)/$(LIBRARY): $(patsubst %.f,%.o,$(wildcard */matrix.f))  all_matrix.o
 	$(call CREATELIB, $@, $^)  
 
-
-cpp: $(LIBDIR)/$(LIBRARY)
